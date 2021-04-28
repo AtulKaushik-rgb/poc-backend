@@ -1,9 +1,11 @@
-const express = require('express')
+const express = require('express');
+var cors = require('cors');
 const serverless = require('serverless-http');
 
 const dbData = require('../db')
 
 const app = express();
+app.use(cors());
 const router = express.Router();
 
 router.get('/',(req,res)=>{
