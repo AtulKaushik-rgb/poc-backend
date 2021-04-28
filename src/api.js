@@ -27,15 +27,11 @@ router.get("/items", async function (req, res, next) {
 router.get("/items/search", async function (req, res, next) {
     let data = null;
     try {
-      const response = dbData;
-      const output = response;
-  
-      console.log(response);
+      const output = dbData;
       if (req.query.q !== "all")
-        data = output.filter(
-          (items) => items.title.toLowerCase() === req.query.q.toLowerCase()
-        );
-      else data = output;
+      {
+        data = output.default.items.find(it => it.title.toLowerCase() === req.query.q.toLowerCase())
+      }else data = output;
   
       if (req.query.max) {
         data = data.filter(
